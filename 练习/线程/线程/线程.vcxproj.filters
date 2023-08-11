@@ -19,4 +19,18 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="useCTime.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="myStream.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="myException.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="myThread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
