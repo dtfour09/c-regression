@@ -168,6 +168,22 @@ clog
 预定义的对象 clog 是 iostream 类的一个实例。clog 对象附属到标准输出设备，通常也是显示屏，但是 clog 对象是缓冲的。这意味着每个流插入到 clog 都会先存储在缓冲区，直到缓冲填满或者缓冲区刷新时才会输出。
 
 通过这些小实例，我们无法区分 cout、cerr 和 clog 的差异，但在编写和执行大型程序时，它们之间的差异就变得非常明显。所以良好的编程实践告诉我们，使用 cerr 流来显示错误消息，而其他的日志消息则使用 clog 流来输出。
+输出当前行列
+
+#include <stdio.h>
+ 
+int main(int argc, char **argv)
+{
+        printf("File    Fame: %s\n", __FILE__);      //文件名
+        printf("Present Line: %d\n", __LINE__);      //所在行
+        printf("Present Function: %s\n", __func__);  //函数名
+ 
+        return 0;
+} /* ----- End of main()  ----- */
+
+cout<<hex<<i<<endl; //输出十六进制数
+cout<<oct<<i<<endl; //输出八进制数
+cout<<dec<<i<<endl; //输出十进制数
 ```
 
 ### 10，文件和流
