@@ -2,7 +2,7 @@
 
 说明以下，该记录是参考了不同大佬的讲解，仅作为个人笔记，图是偷的。
 
-### 1，vs studio 使用c的时候发出了警告，导致程序无法运行。
+### vs studio 使用c的时候发出了警告，导致程序无法运行。
 
 需要在程序的开头加入宏命令
 
@@ -10,7 +10,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 ```
 
-### 2，ctime 的使用。
+### ctime 的使用。
 
 第一种 gmtime
 
@@ -62,7 +62,7 @@ time_t maktime(tm *);
 将tm* 类型变成time_t类型方便difftime使用。
 ```
 
-### 3，关于 -r的使用。
+### 关于 -r的使用。
 
 ```
 	for (int i = 1; i < 101; ++i)
@@ -73,7 +73,7 @@ time_t maktime(tm *);
 //  -r在里面会自动会到行首，会覆盖掉之前输出的内容。
 ```
 
-### 4，auto和decltype自动推导类型
+### auto和decltype自动推导类型
 
 ```
 int x = 0; // 整型变量
@@ -89,7 +89,7 @@ auto z = new auto(9); // int
 
 ```
 
-### 5,储存方式
+### 储存方式
 
 ```
 //register 
@@ -108,7 +108,7 @@ erxern 引用其他文件内已经定义的全局变量 或者 函数。
 用于引用常量，突破const的限制。
 ```
 
-### 6 cmath的数学运算
+### cmath的数学运算
 
 ```
 1	double cos(double);
@@ -133,7 +133,7 @@ erxern 引用其他文件内已经定义的全局变量 或者 函数。
 该函数返回一个小于或等于传入参数的最大整数。
 ```
 
-### 7,一个总是被遗忘的内容
+### 一个总是被遗忘的内容
 
 ```
 输出字符串的首地址 %c 是第一个字符 %s是该字符及以后的字符。
@@ -145,13 +145,13 @@ c里面是
 %.2
 ```
 
-### 8，指针的一些问题。
+### 指针的一些问题。
 
 ```
 可以使用 &来进行取地址，当然&也可以用来引用。
 ```
 
-### 9，基本输入输出
+### 基本输入输出
 
 ```
 iostream
@@ -186,7 +186,7 @@ cout<<oct<<i<<endl; //输出八进制数
 cout<<dec<<i<<endl; //输出十进制数
 ```
 
-### 10，文件和流
+### 文件和流
 
 ```
 //头文件
@@ -202,13 +202,14 @@ afile.open("file.dat", ios::out | ios::in );
 void close(); 关闭文件流。
 ```
 
-| 模式标志   | **描述**                                                     |
-| ---------- | ------------------------------------------------------------ |
-| ios::app   | 追加模式。所有写入都追加到文件末尾。                         |
-| ios::ate   | 文件打开后定位到文件末尾。                                   |
-| ios::in    | 打开文件用于读取。                                           |
-| ios::out   | 打开文件用于写入。                                           |
-| ios::trunc | 如果该文件已经存在，其内容将在打开文件之前被截断，即把文件长度设为 0 |
+| 模式标志    | **描述**                                                     |
+| ----------- | ------------------------------------------------------------ |
+| ios::app    | 追加模式。所有写入都追加到文件末尾。                         |
+| ios::binary | 以二进制的方式打开文件                                       |
+| ios::ate    | 文件打开后定位到文件末尾。                                   |
+| ios::in     | 打开文件用于读取。                                           |
+| ios::out    | 打开文件用于写入。                                           |
+| ios::trunc  | 如果该文件已经存在，其内容将在打开文件之前被截断，即把文件长度设为 0 |
 
 ```
 #include <fstream>
@@ -328,9 +329,29 @@ seekg(0，ios::start)
 fstream：：clear（）
 ```
 
+文件和流补充
+
+```
+如果选择二进制读取的话需要把数据转换成 （char *）类型写入文件，读取的时候根据格式读取。
+例如：
+typedef struct
+{
+	float a;
+    float b;
+	double c;
+}name
+写入二进制文件为
+osfstream.write((char *)name,sizeof(name));
+读的时候用char * 类型读
+char buf[256];
+osfstream.read(buf,sizeof(buf));
+name * str = (name *)buf;
+严格按照字节对齐来读取数据，不然数据会读错的。
+```
 
 
-### 11, c++多态
+
+###  c++多态
 
 多态的字面意思就是多种形态。当类之间存在层次结构，并且类之间是通过继承管关联的时候就会用到多态。c++多态以为这它会根据成员函数的对象不同，而调用不懂函数。 其实就是子类重写父类，父类对于需要重写的函数设置为虚函数。
 
@@ -340,11 +361,11 @@ fstream：：clear（）
 第二种是纯虚函数。第一种子类是可以不用重写父类的，但是第二种子类必须重新父类。
 ```
 
-### 12，数据抽象。
+### 数据抽象。
 
 指的是只向外交提供关键信息，并隐藏其后台细节，只能变现必要的信息，而不呈现细节。
 
-### 13，异常处理
+### 异常处理
 
 ##### 什么是异常？
 
@@ -478,7 +499,7 @@ int main()
 }
 ```
 
-### 14,c++类中自带的6种函数。
+### c++类中自带的6种函数。
 
 ```
 class A
@@ -493,7 +514,7 @@ public:
 };
 ```
 
-### 15，c++动态内存
+### c++动态内存
 
 栈：函数内部声名的所有变量都占用栈内存，static定义的除外，当然也可能有其他例子。
 
@@ -560,7 +581,7 @@ int main()
 }
 ```
 
-### 16，命名空间
+### 命名空间
 
 一开始以为是类或者结构体里面套用了static
 
@@ -590,7 +611,7 @@ cin  cout ...
 
 命名空间也可以套娃。奇怪的套娃。
 
-### 17，模板
+### 模板
 
 ##### 函数模板
 
@@ -667,6 +688,41 @@ T Stack<T>::top () const
 Stack<int> myStack;
 ```
 
+##### 模板类的一个注意事项
+
+```
+#include<iostream>
+#include<string>
+#include<vector>
+using namespace std;
+
+template <typename T>
+bool is_funtion(T&& val)
+{
+	if (sizeof(val))
+	{
+		return true;
+	}
+	return false;
+}
+
+int main()
+{
+	if (is_funtion("111"))
+	{
+		cout << "123" << endl;
+	}
+	vector<int>v(3,0);
+	if (is_funtion(v)) //如果需要嵌套模板请不要双重推断，模板暂时只能允许一次推到
+	{
+		cout << "456" << endl;
+	}
+	cout << v.size() << endl;
+}
+```
+
+
+
 ##### 坑点
 
 该错误描述为：无法解析的外部符号。我们再回顾下上面说过的，本项目一共有两个编译单元，一个是main，一个是function，而编译过程是每个编译单元单独编译过后再交给连接器进行连接的，也就是说在连接器之前两个编译单元就已经进行了编译，而在主函数main里面调用外部编译单元时，由于另外一个编译单元function在编译时模板类没有被调用而没有得到具现化，从而导致了连接器在函数主函数里调用了模板类函数，但是找不到具体的实现方法的情况，从到就出现了开头的错误：LNK2019 无法解析的外部符号。
@@ -679,7 +735,7 @@ Stack<int> myStack;
 
 3.在实现模板类的文件中调用一下模板类。原因：调用一下让模板类函数得到具现化。
 
-### 18，预处理
+### 预处理
 
 最常见的有以下
 
@@ -724,7 +780,7 @@ int main()
 }
 ```
 
-### 19，信号处理
+### 信号处理
 
 介绍：信号是有操作系统传给进程中断的，会提早终止一个程序。在unix，Linux，Mac OS X 或者windows系统上，可以通过ctral + c产生中断。
 
@@ -794,7 +850,7 @@ object(&,SIGNAL,&,SLOT);
 
 如果能够实现一个方便函数回调，确实舒服啊。 /dog。
 
-### 20，C++多线程
+### C++多线程
 
 ##### 介绍
 
@@ -869,6 +925,16 @@ join方式，等待启动的线程完成，才会继续往下执行。
 ```
 if(myThread.joinable()) foo.join();
 ```
+
+###### thread的开始时间
+
+看论坛和gpt搜索 thread 的开始时间是创建，其实是从join开始的。
+
+```
+这一点要注意下。
+```
+
+
 
 ###### this_thread
 
@@ -1053,6 +1119,18 @@ enum class cv_status{no_timeout,timeout};
 
 ###### wait
 
+wait() 会阻塞在这里，但是wait（）之前的mutex被提前解开将会导致wait进入到虚假的等待
+
+```
+解决方案1
+while(pred())
+{
+	conditon_variable.wait(mutex)
+}
+解决方案2
+condition_variable.wait(mutex,[]{return pred();});
+```
+
 当前线程调用wait（）后将被阻塞（此时当前线程应该获得了锁（mutex），不妨设获得锁lck），知道另外某个线程调用notify_* 唤醒当前线程。在线程被阻塞时，该函数会自动调用lck.unlock（）释放锁，使得其他被阻塞在锁竞争上的线程得以继续执行。另外一旦当前线程获取通知（notified,通常是另外某线程调用notify__*  唤醒了当前线程），wait()函数也是自动调用了lck.lock()，使得lckd的状态和wait函数被调用时相同。代码示例：
 
 ```
@@ -1104,7 +1182,7 @@ int main ()
 
 ###### wait_for
 
-与std::condition_variable::wait()类似，不过wait_for 可以指定一个时间段，在当前线程收到通知或者指定的时间rel_time超时之前，该线程都会处于阻塞zhuangt。而一旦超市或者收到了其他线程的通知，wait_for返回，剩下的处理步骤和wait（）类似。
+与std::condition_variable::wait()类似，不过wait_for 可以指定一个时间段，在当前线程收到通知或者指定的时间rel_time超时之前，该线程都会处于阻塞状态。而一旦超时或者收到了其他线程的通知，wait_for返回，剩下的处理步骤和wait（）类似。
 
 ```
 template <class Rep, class Period>
@@ -1198,7 +1276,7 @@ int main ()
 
   4，添加到任务队列里面的接口
 
-### 21，c++ STL
+### c++ STL
 
 前面有说过模板库的概念。c++ STL（标准模板库）是一套功能强大的c++模板类，提供了常用的算法和数据，如向量，队列，链表，栈。
 
@@ -1240,7 +1318,7 @@ int main()
 }
 ```
 
-### 22，c++标准库
+### c++标准库
 
 分为了两种：
 
@@ -1286,5 +1364,113 @@ STL分配器
 
 
 
-记录下需要复习的 GDB ，G++ ，makefile，vim，（c++ 11其他特性），模板类，容器类，数据结构类，内存池，i/o重载。c++这边其实并未完工，只是最近在学信号工程的一些基础知识。emmp。
+记录下需要复习的 GDB ，G++ ，makefile，vim，（c++ 11其他特性），模板类，容器类，数据结构类，内存池，i/o重载，正则表达式。c++这边其实并未完工，只是最近在学信号工程的一些基础知识。emmp。
+
+23，c++控制台处理
+
+我们有时候需要需要控制台做一些操作。
+
+```
+在c++头文件stdlib下的system（char *） 可以完成
+```
+
+但是有时候我们需要捕获stdlib的返回值。
+
+```
+那我们可以开一个管道
+FILE *pipe = popen(char *,'r')
+while(!feof(pipe))
+{
+	if(fget(buff,size_t,FILE))
+}
+pclose(FILE);
+```
+
+但是有时候是一些经过信息，而不是字节流可能获取不到。
+
+```
+./dhclient br0 -v > dhclientInfo.txt 2>&1
+我们有两种办法去捕获这些信息，但是由于ssteam可能在低版本下不兼容只是用上班这一种办法将其打印写入到文件种。
+```
+
+### c++特性
+
+```
+void is_funtion(int &&val)
+既可以引用左值，又可以引用右值，注意是引用！而不是值传递。
+```
+
+### 获取cpu核心数量
+
+线程池一般获取开启数量为当前cpu核心数量 + 2？ 原因未知，可能有人计算过。
+
+```
+unsigned int cores = std::thread::hardware_concurrency();
+```
+
+### 异步操作
+
+头文件
+
+```
+#include <future>
+```
+
+```
+// 异步任务函数，打印数组元素
+void printArrayElement(int element,bool *Ced) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(100)); // 模拟异步任务
+    *Ced = false;
+    std::cout << element << " ";
+}
+
+int main() {
+    std::chrono::high_resolution_clock::time_point start =  std::chrono::high_resolution_clock::now();
+    // 创建包含数字1-24的数组
+    std::vector<int> numbers(24);
+    bool num[24];
+
+    for(int i = 0 ; i < numbers.size();i++)
+        numbers[i] = i+1;
+
+    // 启动异步任务，每个元素启动一个异步操作
+    std::vector<std::future<void>> futures;
+    for (int element : numbers) {
+        futures.push_back(std::async(std::launch::async, printArrayElement, element,&num[element-1]));
+    }
+
+    // 主线程执行其他操作
+
+    std::cout << "Main thread doing something..." << std::endl;
+
+    // 等待所有异步任务完成
+    for (auto& future : futures) {
+        future.wait();
+    }
+
+    std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();
+
+    std::chrono::milliseconds UseTime = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+
+    std::cout << std::endl;
+    std::cout << UseTime.count()  << std::endl; // 换行
+
+    return 0;
+}
+```
+
+挺好的操作。多线程和异步是有区别的。
+
+##### 异步与多线程的区别
+
+```
+异步和多线程都是处理并发任务的方式，但它们有一些重要的区别：
+
+执行方式：多线程是并行执行任务，即多个线程同时执行任务，而异步是串行执行任务，即一个任务执行完成后再执行下一个任务。
+内存使用：每个线程都有自己的栈和内存，因此多线程会占用更多的内存。而异步则可以在一个线程中共享内存。
+调度机制：多线程需要操作系统提供的线程调度器来进行线程之间的切换，而异步则是通过事件循环机制完成任务的调度。
+错误处理：多线程中一个线程抛出异常时，其他线程不受影响，但异步中一个任务出错可能会影响后续的任务执行。
+
+总的来说，多线程适用于CPU密集型的任务（如计算），而异步则适用于IO密集型的任务（如网络请求），它们都有自己的优缺点，在选择使用时需要根据具体的场景进行判断。
+```
 
